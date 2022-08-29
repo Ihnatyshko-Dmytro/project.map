@@ -1,0 +1,41 @@
+html {
+    height: 100%;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+body, #root, .App {
+    height: 100%;
+    margin: 0;
+}
+
+.header, .houses, .maps, .nav {
+    padding: 1rem 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 100px 1fr;
+
+    grid-template-areas: 
+    "header header"
+    "maps houses";
+}
+
+.header {
+ grid-area: header;
+}
+
+.houses {
+    grid-area: houses;
+}
+
+.maps {
+    grid-area: maps;
+}
+
