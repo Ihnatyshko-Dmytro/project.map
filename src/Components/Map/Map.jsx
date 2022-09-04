@@ -1,7 +1,9 @@
 import './style.scss';
 import { GoogleMap } from '@react-google-maps/api';
 import React from 'react';
-import { defaultTheme } from './Theme'
+import { defaultTheme } from './Theme';
+import { Autocomplete } from '../Autocomplete';
+
 
 
 
@@ -10,8 +12,7 @@ const containerStyle = {
     height: '100%'
 };
 
-
-const Map = ({ center }) => {
+const Map = ({ center, isLoaded }) => {
 
     const defaultOptions = {
         panControl: true,
@@ -39,7 +40,11 @@ const Map = ({ center }) => {
     }, [])
 
     return (
+
         <div className="maps">
+            <div className="addressSearchContainer">
+                <Autocomplete isLoaded={isLoaded} />
+            </div>
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
