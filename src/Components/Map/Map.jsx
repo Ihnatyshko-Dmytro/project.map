@@ -14,6 +14,8 @@ const containerStyle = {
 
 const Map = ({ center, isLoaded }) => {
 
+    console.log(isLoaded);
+
     const defaultOptions = {
         panControl: true,
         zoomControl: true,

@@ -25,7 +25,7 @@ function App() {
     libreries
   });
 
-
+  console.log(isLoaded);
   return (
     <div className="App">
       <Nav />

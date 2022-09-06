@@ -5,9 +5,10 @@ import usePlacesAutocomplete, {
   } from "use-places-autocomplete";
   import useOnclickOutside from "react-cool-onclickoutside";
 import { useEffect } from 'react';
-import React from 'react';
 
 export const Autocomplete = ({ isLoaded }) => {
+
+  console.log(isLoaded);
     const {
         ready,
         value,
@@ -24,15 +25,12 @@ export const Autocomplete = ({ isLoaded }) => {
       });
     
       const handleInput = (e) => {
-        // Update the keyword of the input element
         setValue(e.target.value);
       };
     
       const handleSelect =
         ({ description }) =>
         () => {
-          // When user selects a place, we can replace the keyword without request data from API
-          // by setting the second parameter to "false"
           setValue(description, false);
           clearSuggestions();
     
@@ -71,7 +69,7 @@ export const Autocomplete = ({ isLoaded }) => {
             value={value}
             onChange={handleInput}
             disabled={!ready}
-            placeholder="Where are you going?" />
+            placeholder="Where?" />
             {status === "OK" && <ul className='suggestions'>{renderSuggestions()}</ul>}
         </div>
     )
