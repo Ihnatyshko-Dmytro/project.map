@@ -31,7 +31,7 @@ function App() {
       <Nav />
       <div className="container">
         <Header />
-        {isLoaded ? <Map center={defaultCenter} isLoaded={isLoaded} /> : <h2>Loading...</h2>}
+        {/* {isLoaded ? <Map center={defaultCenter} isLoaded={isLoaded} /> : <h2>Loading...</h2>} */}
         <Houses />
       </div>
     </div>
