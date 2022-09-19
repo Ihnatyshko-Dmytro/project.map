@@ -3,7 +3,6 @@ import { GoogleMap } from '@react-google-maps/api';
 import React from 'react';
 import { defaultTheme } from './Theme';
 
-
 const containerStyle = {
     width: '100%',
     height: '100%'
