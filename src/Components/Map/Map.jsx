@@ -1,63 +1,32 @@
 import './style.scss';
-import { GoogleMap } from '@react-google-maps/api';
+
 import React from 'react';
-import { defaultTheme } from './Theme';
-import { Autocomplete } from '../Autocomplete';
+import { useJsApiLoader } from '@react-google-maps/api';
+import { MapLoaded } from './MapLoaded';
+import { Autocomplete } from "./Autocomplete";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
 
-
-
-const containerStyle = {
-    width: '100%',
-    height: '100%'
+const defaultCenter = {
+    lat: 50.43,
+    lng: 30.511,
 };
 
-const Map = ({ center, isLoaded }) => {
+const libreries = ['plases'];
 
-    console.log(isLoaded);
-
-    const defaultOptions = {
-        panControl: true,
-        zoomControl: true,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        clickableIcons: false,
-        keyboardsShortcuts: false,
-        scrollwheel: true,
-        disableDobleClickZoom: false,
-        fullscreenControl: false,
-        styles: defaultTheme,
-    }
-
-    const mapRef = React.useRef(undefined)
-
-    const onLoad = React.useCallback(function callback(map) {
-        mapRef.current = map;
-    }, [])
-
-    const onUnmount = React.useCallback(function callback(map) {
-        mapRef.current = undefined;
-    }, [])
+const Map = () => {
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: API_KEY,
+        libreries
+    });
 
     return (
-
-        <div className="maps">
+        <div className ="mapContainer">
             <div className="addressSearchContainer">
-                <Autocomplete isLoaded={isLoaded} />
+                <Autocomplete isLoaded = {isLoaded} />
             </div>
-            <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={10}
-                onLoad={onLoad}
-                onUnmount={onUnmount}
-                options={defaultOptions}
-            >
-                { /* Child components, such as markers, info windows, etc. */}
-                <></>
-            </GoogleMap>
+            {isLoaded ? <MapLoaded center={defaultCenter} /> : <h2>Loading...</h2>}
         </div>
     )
 }

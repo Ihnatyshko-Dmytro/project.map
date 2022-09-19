@@ -1,14 +1,10 @@
 import './style.scss';
-import usePlacesAutocomplete, {
-    getGeocode,
-    getLatLng,
-  } from "use-places-autocomplete";
-  import useOnclickOutside from "react-cool-onclickoutside";
+import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside";
 import { useEffect } from 'react';
 
 export const Autocomplete = ({ isLoaded }) => {
 
-  console.log(isLoaded);
     const {
         ready,
         value,
@@ -20,6 +16,7 @@ export const Autocomplete = ({ isLoaded }) => {
         initOnMount: false,
         debounce: 300,
       });
+
       const ref = useOnclickOutside(() => {
         clearSuggestions();
       });
@@ -33,12 +30,11 @@ export const Autocomplete = ({ isLoaded }) => {
         () => {
           setValue(description, false);
           clearSuggestions();
-    
-          // Get latitude and longitude via utility functions
-        //   getGeocode({ address: description }).then((results) => {
-        //     const { lat, lng } = getLatLng(results[0]);
-        //     console.log("📍 Coordinates: ", { lat, lng });
-        //   });
+
+          getGeocode({ address: description }).then((results) => {
+            const { lat, lng } = getLatLng(results[0]);
+            console.log("📍 Coordinates: ", { lat, lng });
+          });
         };
     
       const renderSuggestions = () =>
@@ -49,7 +45,7 @@ export const Autocomplete = ({ isLoaded }) => {
           } = suggestion;
     
           return (
-            <li className='listItem' key={place_id} onClick={handleSelect(suggestion)}>
+            <li className="listItem" key={place_id} onClick={handleSelect(suggestion)}>
               <strong>{main_text}</strong> <small>{secondary_text}</small>
             </li>
           );
@@ -57,7 +53,7 @@ export const Autocomplete = ({ isLoaded }) => {
 
         useEffect(() => {
           if(isLoaded) {
-            init()
+            init();
           }
         }, [isLoaded, init])
 

@@ -6,12 +6,17 @@ html {
     text-align: center;
 }
 
-body, #root, .App {
+body,
+#root,
+.App {
     height: 100%;
     margin: 0;
 }
 
-.header, .houses, .maps, .nav {
+.header,
+.houses,
+.maps,
+.nav {
     padding: 1rem 0;
     box-sizing: border-box;
 }
@@ -22,13 +27,13 @@ body, #root, .App {
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 100px 1fr;
 
-    grid-template-areas: 
-    "header header"
-    "maps houses";
+    grid-template-areas:
+        "header header"
+        "maps houses";
 }
 
 .header {
- grid-area: header;
+    grid-area: header;
 }
 
 .houses {
@@ -36,7 +41,7 @@ body, #root, .App {
 }
 
 .maps {
+    height: 100%;
     grid-area: maps;
     padding: 0;
 }
-
